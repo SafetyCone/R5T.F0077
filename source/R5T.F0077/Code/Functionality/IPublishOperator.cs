@@ -19,20 +19,20 @@ namespace R5T.F0077
 			string outputDirectoryPath)
         {
 			var hasAnyRecursiveCOMReferences = await Instances.ProjectReferencesOperator.HasAnyRecursiveCOMReferences(projectFilePath);
-			if(hasAnyRecursiveCOMReferences)
-            {
+			if (hasAnyRecursiveCOMReferences)
+			{
 				// Need to use MSBuild.
 				Instances.MSBuildPublishOperator.Publish_Synchronous(
 					projectFilePath,
 					outputDirectoryPath);
-            }
+			}
 			else
-            {
+			{
 				// Use dotnet.
 				Instances.DotnetPublishOperator.Publish(
 					projectFilePath,
 					outputDirectoryPath);
-            }
-        }
+			}
+		}
 	}
 }
