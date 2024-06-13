@@ -22,17 +22,35 @@ namespace R5T.F0077
 			if (hasAnyRecursiveCOMReferences)
 			{
 				// Need to use MSBuild.
-				Instances.MSBuildPublishOperator.Publish_Synchronous(
+				this.Publish_MSBuild(
 					projectFilePath,
 					outputDirectoryPath);
 			}
 			else
 			{
 				// Use dotnet.
-				Instances.DotnetPublishOperator.Publish(
+				this.Publish_Dotnet(
 					projectFilePath,
 					outputDirectoryPath);
 			}
 		}
-	}
+
+		public void Publish_Dotnet(
+			string projectFilePath,
+			string outputDirectoryPath)
+		{
+            Instances.DotnetPublishOperator.Publish(
+                projectFilePath,
+                outputDirectoryPath);
+        }
+
+        public void Publish_MSBuild(
+            string projectFilePath,
+            string outputDirectoryPath)
+		{
+            Instances.MSBuildPublishOperator.Publish_Synchronous(
+                projectFilePath,
+                outputDirectoryPath);
+        }
+    }
 }
